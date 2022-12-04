@@ -1,7 +1,6 @@
 <template>
 	<div class="app">
 		<h1>Список сотрудников</h1>
-		<my-button @click="fetchEmployees">Получить сотрудников</my-button>
 		<my-button @click="showDialog" style="margin: 15px 0;">Добавить сотрудника</my-button>
 		<my-dialog v-model:show="dialogVisible">
 			<employee-form @create="createEmployee" />
@@ -49,6 +48,10 @@ export default {
 				alert('Ошибка')
 			}
 		}
+	},
+	//динамическая подгрузка сотрудников
+	mounted() {
+		this.fetchEmployees();
 	}
 }
 </script>

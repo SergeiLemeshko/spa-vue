@@ -1,6 +1,7 @@
 <template>
 	<div class="app">
 		<h1>Список сотрудников</h1>
+		<my-button @click="fetchEmployees">Получить сотрудников</my-button>
 		<my-button @click="showDialog" style="margin: 15px 0;">Добавить сотрудника</my-button>
 		<my-dialog v-model:show="dialogVisible">
 			<employee-form @create="createEmployee" />
@@ -12,6 +13,8 @@
 <script>
 import EmployeeForm from "@/components/EmployeeForm";
 import EmployeeList from "@/components/EmployeeList";
+import MyButton from "./components/UI/MyButton";
+import axios from 'axios';
 
 export default {
 	components: {
@@ -19,11 +22,7 @@ export default {
 	},
 	data() {
 		return {
-			employees: [
-				{ id: '1', name: 'Иван', salary: '500', age: '4' },
-				{ id: '2', name: 'Cергей', salary: '600', age: '31' },
-				{ id: '3', name: 'Анна', salary: '700', age: '28' },
-			],
+			employees: [],
 			//для закрытия окна создания сотрудника
 			dialogVisible: false,
 		}
@@ -39,6 +38,16 @@ export default {
 		//функция показа окна созд. сотрудника
 		showDialog() {
 			this.dialogVisible = true;
+		},
+		//получение списка сотрудников с сервера
+		async fetchEmployees() {
+			try {
+				const response = await axios.get('https://dummy.restapiexample.com/api/v1/employees');
+				// console.log(response.data);
+				this.employees = response.data;
+			} catch (e) {
+				alert('Ошибка')
+			}
 		}
 	}
 }

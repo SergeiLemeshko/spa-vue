@@ -1,12 +1,12 @@
 <template>
 	<div class="employee">
 		<div>
-			<div><strong>Имя:</strong> {{ employee.name }}</div>
-			<div><strong>З/п:</strong> {{ employee.salary }}</div>
-			<div><strong>Возраст:</strong> {{ employee.age }}</div>
+			<div><strong>Имя:</strong> {{ employee.userId }}</div>
+			<div><strong>З/п:</strong> {{ employee.id }}</div>
+			<div><strong>Возраст:</strong> {{ employee.title }}</div>
 		</div>
 		<div class="employee__btns">
-			<my-button @click="$emit('remove', post)">Удалить</my-button>
+			<my-button class="btn-del" @click="$emit('remove', employee)">Удалить</my-button>
 		</div>
 	</div>
 </template>
@@ -18,7 +18,7 @@ export default {
 			type: Object,
 			required: true,
 		}
-	}
+	},
 }
 </script>
 
@@ -27,8 +27,10 @@ export default {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	margin: 10px 0px;
+	margin: 15px 0px;
 	padding: 10px;
-	border: 2px solid rgb(48, 93, 218);
+	border: 1.5px solid rgb(206, 207, 209);
+	color: rgb(206, 207, 209);
 }
 </style>
+

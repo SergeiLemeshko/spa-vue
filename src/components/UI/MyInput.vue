@@ -19,13 +19,13 @@ export default {
 <style scooped>
 .input {
 	width: 100%;
-	border: 2px solid rgb(196, 15, 15);
+	border: 2px solid rgb(11, 102, 75);
 	padding: 10px 15px;
 	margin-top: 10px;
 }
 
 h4 {
-	color: rgb(219, 62, 62);
+	color: rgb(0, 0, 0);
 }
 </style>
 

@@ -1,6 +1,6 @@
 <template>
 	<div class="app">
-		<h1 class="app__title">Отдел компании А:</h1>
+		<h1 class="app__title">Сотрудники компании:</h1>
 		<my-button @click="showDialog" style="margin: 15px 0;">Добавить сотрудника</my-button>
 		<my-dialog v-model:show="dialogVisible">
 			<employee-form @create="createEmployee" />
@@ -30,13 +30,6 @@ export default {
 		}
 	},
 	methods: {
-		createEmployee(employee) {
-			this.employees.push(employee);
-			this.dialogVisible = false;
-		},
-		removeEmployee(employee) {
-			this.employees = this.employees.filter(p => p.id !== employee.id)
-		},
 		//функция показа окна созд. сотрудника
 		showDialog() {
 			this.dialogVisible = true;
@@ -60,13 +53,34 @@ export default {
 			} finally {
 				this.isEmployeesLoading = false;
 			}
-		}
+		},
+		//добавление сотрудника
+		async createEmployee(employee) {
+			axios.post('https://jsonplaceholder.typicode.com/albums', employee)
+				.then((response) => {
+					// console.log(response.data);
+					this.employees = [...this.employees, response.data]
+				})
+				.catch((error) => console.log(error));
+			this.dialogVisible = false;
+		},
+		//удаление сотрудника
+		removeEmployee(employee) {
+			axios.delete(`https://jsonplaceholder.typicode.com/albums/${employee}`)
+				.then(() => {
+					this.employees = this.employees.filter(p => p.id !== employee.id);
+					console.log(employee.id);
+				})
+				.catch(error => console.log(error));
+		},
 	},
+
 	//динамическая подгрузка сотрудников
 	mounted() {
 		this.fetchEmployees();
 	}
 }
+
 </script>
 
 <style>
@@ -77,16 +91,12 @@ export default {
 }
 
 .app {
-	background-image: url('img/canva.jpg');
-	background-position: 0 0;
-	background-repeat: no-repeat;
-	background-size: cover;
-	max-width: 1920px;
-	min-height: 1100px;
+	background: linear-gradient(-15deg, #54bed8, #3df1bb);
+	min-height: 100vh;
 	padding: 15px;
 }
 
 .app__title {
-	color: rgb(196, 15, 15);
+	color: rgb(0, 0, 0);
 }
 </style>

@@ -27,10 +27,10 @@ export default {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	margin: 15px 0px;
+	margin: 10px 0px;
 	padding: 10px;
-	border: 1.5px solid rgb(206, 207, 209);
-	color: rgb(206, 207, 209);
+	border: 1.5px solid rgb(24, 24, 24);
+	color: rgb(24, 24, 24);
 }
 </style>
 

@@ -7,8 +7,9 @@
 		<my-button style="align-self: flex-end" @click="createEmployee">Создать</my-button>
 	</form>
 </template>
-
+ 
 <script>
+
 export default {
 	data() {
 		return {

@@ -7,7 +7,7 @@
 	<h2 v-else style="color: red">
 		Список сотрудников пуст!
 	</h2>
-</template>
+</template> 
 
 <script>
 import EmployeeItem from "@/components/EmployeeItem.vue";

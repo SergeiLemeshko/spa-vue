@@ -33,4 +33,3 @@ export default {
 	color: rgb(24, 24, 24);
 }
 </style>
-

@@ -16,7 +16,6 @@ import EmployeeForm from "@/components/EmployeeForm";
 import EmployeeList from "@/components/EmployeeList";
 import MyButton from "./components/UI/MyButton";
 import axios from 'axios';
-
 export default {
 	components: {
 		EmployeeList, EmployeeForm
@@ -40,7 +39,6 @@ export default {
 			this.dialogVisible = true;
 			this.$emit('show', this.dialogVisible);
 		},
-
 		//получение списка сотрудников с сервера
 		async fetchEmployees() {
 			try {
@@ -66,21 +64,20 @@ export default {
 		},
 		//удаление сотрудника
 		removeEmployee(employee) {
-			axios.delete(`https://jsonplaceholder.typicode.com/albums/${employee}`)
-				.then(() => {
-					this.employees = this.employees.filter(p => p.id !== employee.id);
-					console.log(employee.id);
-				})
-				.catch(error => console.log(error));
+			if (confirm("Вы действительно хотите удалить эту запись?"))
+				axios.delete(`https://jsonplaceholder.typicode.com/albums/${employee}`)
+					.then(() => {
+						this.employees = this.employees.filter(p => p.id !== employee.id);
+						console.log(employee.id);
+					})
+					.catch(error => console.log(error));
 		},
 	},
-
 	//динамическая подгрузка сотрудников
 	mounted() {
 		this.fetchEmployees();
 	}
 }
-
 </script>
 
 <style>

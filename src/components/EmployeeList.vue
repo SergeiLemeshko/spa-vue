@@ -11,7 +11,6 @@
 
 <script>
 import EmployeeItem from "@/components/EmployeeItem.vue";
-
 export default {
 	components: { EmployeeItem },
 	props: {
